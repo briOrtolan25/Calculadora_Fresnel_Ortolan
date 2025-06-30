@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculadora de Zona de Fresnel 🌐</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-dark text-light">
+
+  <!-- Carrusel de fondo -->
+<div id="fondoCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" style="position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100%;">
+  <div class="carousel-inner h-100">
+    <div class="carousel-item active h-100">
+      <img src="antenas.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Antenas" />
+    </div>
+    <div class="carousel-item h-100">
+      <img src="antenas2.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Ondas" />
+    </div>
+  </div>
+</div>
+
+
+  <div class="container my-5 p-4 bg-black bg-opacity-75 rounded-4 shadow-lg" style="max-width: 600px;">
+    <h1 class="text-center mb-3">🌐 Calculadora de Zona de Fresnel</h1>
+    <p class="text-center fst-italic text-info">Creado por: Brisa Rocio Ortolan</p>
+
+    <!-- Pestañas -->
+    <ul class="nav nav-tabs mb-4" id="tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="calculo-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#calculo"
+          type="button"
+          role="tab"
+          aria-controls="calculo"
+          aria-selected="true"
+        >Cálculo</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="historial-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#historial"
+          type="button"
+          role="tab"
+          aria-controls="historial"
+          aria-selected="false"
+        >Historial</button>
+      </li>
+         <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="formula-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#formula"
+          type="button"
+          role="tab"
+          aria-controls="formula"
+          aria-selected="false"
+        >Formula</button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="tabsContent">
+      <!-- Pestaña cálculo -->
+      <div
+        class="tab-pane fade show active"
+        id="calculo"
+        role="tabpanel"
+        aria-labelledby="calculo-tab"
+      >
+        <form id="fresnelForm" onsubmit="event.preventDefault(); calcular();">
+          <div class="mb-3">
+            <label for="distancia" class="form-label">Distancia (km):</label>
+            <input type="text" class="form-control" id="distancia" placeholder="Ej: 10,5" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="frecuencia" class="form-label"> Frecuencia (GHz):</label>
+            <input type="text" class="form-control" id="frecuencia" placeholder="Ej: 2,4" />
+            <div class="form-label">Si no ingresas frecuencia, se mostrará tabla.</div>
+          </div>
+
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="obstaculoCheck" />
+            <label class="form-check-label" for="obstaculoCheck">
+              ¿Existe un obstáculo entre las antenas?
+            </label>
+          </div>
+
+          <div class="mb-3" id="obstaculoContainer" style="display:none;">
+            <label for="alturaObstaculo" class="form-label">Altura del obstáculo (m):</label>
+            <input type="text" class="form-control" id="alturaObstaculo" placeholder="Ej: 5,2" />
+          </div>
+
+          <button type="submit" class="btn btn-gradient w-100 mb-3">📊 Calcular Zona de Fresnel</button>
+        </form>
+
+        <div id="resultado" class="p-3 bg-light text-dark rounded-3" style="white-space: pre-wrap; min-height: 140px;"></div>
+
+        <!-- Barra de porcentaje -->
+        <div id="barraZona" class="mt-4 text-center" style="display:none;">
+          <div class="mb-2 fw-semibold text-info zonaCompleta">
+            Zona completa: <span id="zonaCompletaVal">0</span> m
+          </div>
+          <div class="progress rounded-pill" style="height: 30px;">
+            <div
+              id="barraRecomendada"
+              class="progress-bar bg-success"
+              role="progressbar"
+              style="width: 0%"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+          <div class="mt-2 text-info fw-medium porcentajeText">
+            Zona recomendada libre (40% - 60%)
+          </div>
+        </div>
+      </div>
+
+      <!-- Pestaña historial -->
+      <div
+        class="tab-pane fade"
+        id="historial"
+        role="tabpanel"
+        aria-labelledby="historial-tab"
+        style="max-height: 350px; overflow-y: auto;"
+      >
+        <div id="historial" class="text-light"></div>
+        </div>
+
+
+       <!-- Pestaña historial -->
+      <div
+        class="tab-pane fade"
+        id="formula"
+        role="tabpanel"
+        aria-labelledby="formula-tab"
+        style="max-height: 350px; overflow-y: auto;"
+      >
+        <div id="formula" class="text-light"></div>
+        </div>
+
+
+     
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

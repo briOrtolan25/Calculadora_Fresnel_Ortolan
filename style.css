@@ -1,0 +1,43 @@
+body {
+  background-image: url('antenas.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+}
+
+/* Botón con gradiente personalizado */
+.btn-gradient {
+  background: linear-gradient(45deg, #00ffff, #0077ff);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 0 10px #00ffffaa;
+  transition: background 0.4s ease, box-shadow 0.3s ease;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(45deg, #0077ff, #00ffff);
+  box-shadow: 0 0 20px #00ffffff;
+}
+
+/* Texto dentro del resultado */
+#resultado {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+}
+
+/* Opcional: para barra progress suave */
+.progress-bar {
+  transition: width 1.5s ease;
+}
+
+body {
+  background-color: transparent !important;
+  overflow-x: hidden;
+}
+
+.carousel-item img {
+  filter: brightness(0.4); /* Opcional: oscurece el fondo para mejor contraste */
+}
+
