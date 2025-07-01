@@ -59,7 +59,8 @@ function calcular() {
     return;
   }
 
-  resultado.innerText += "📘 Fórmula usada: F1 = 17.31 × √(d / (4 × f))\n";
+
+
   resultado.innerText += "📌 Recomendación: mantener libre al menos el 60% de la zona de Fresnel.\n\n";
 
   if (!f || f <= 0) {
